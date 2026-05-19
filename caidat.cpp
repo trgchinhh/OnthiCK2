@@ -1,5 +1,4 @@
 #include "thuvien.h"
-#include <fstream>
 
 // viết hàm đọc file cho dsk và mtk
 void docfile_dsk(DanhSachKe& dsk, const char* duongdan, int cotrongso){
@@ -569,10 +568,8 @@ void duyet_dfs_mtk(MaTranKe mtk, int u, bool visited[]){
     visited[u] = true;
     cout << u << " ";
     for(int i = 0; i < mtk.sodinh; i++){
-        for(int j = 0; j < mtk.sodinh; j++){
-            if(mtk.mtk[u][i] != 0 && !visited[i]){
-                duyet_dfs_mtk(mtk, i, visited);                
-            }
+        if(mtk.mtk[u][i] != 0 && !visited[i]){
+            duyet_dfs_mtk(mtk, i, visited);
         }
     }
 }
@@ -587,8 +584,8 @@ void duyet_bfs_mtk(MaTranKe mtk, int u, bool visited[]){
         cout << v << " ";
         for(int i = 0; i < mtk.sodinh; i++){
             if(mtk.mtk[v][i] != 0 && !visited[i]){
+                q.push(i);
                 visited[i] = true;
-                q.push(i); 
             }
         }
     }
